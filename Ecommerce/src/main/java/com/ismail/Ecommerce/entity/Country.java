@@ -1,6 +1,7 @@
 package com.ismail.Ecommerce.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +28,7 @@ public class Country {
 
     // TODo --> add One to Many relationship with State
     @OneToMany(mappedBy = "country")
+    @JsonIgnore
     private List<State> states;
 
 }
