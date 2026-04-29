@@ -30,20 +30,25 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
          HttpMethod[] unsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
         // Disable HTTP methods for Product: PUT, POST and DELETE
-        config.getExposureConfiguration()
-                .forDomainType(com.ismail.Ecommerce.entity.Product.class)
-                .withItemExposure((metadata, httpMethods) -> httpMethods.disable(unsupportedActions))
-                .withCollectionExposure((metadata, httpMethods) -> httpMethods.disable(unsupportedActions));
+
 
         // Disable HTTP methods for ProductCategory: PUT, POST and DELETE
-        config.getExposureConfiguration()
-                .forDomainType(com.ismail.Ecommerce.entity.ProductCategory.class)
-                .withItemExposure((metadata, httpMethods) -> httpMethods.disable(unsupportedActions))
-                .withCollectionExposure((metadata, httpMethods) -> httpMethods.disable(unsupportedActions));
+        disableHttpMethods(com.ismail.Ecommerce.entity.ProductCategory.class, config, unsupportedActions);
+        disableHttpMethods(com.ismail.Ecommerce.entity.Product.class, config, unsupportedActions);
+        disableHttpMethods(com.ismail.Ecommerce.entity.Country.class, config, unsupportedActions);
+        disableHttpMethods(com.ismail.Ecommerce.entity.State.class, config, unsupportedActions);
 
         // Expose entity IDs in the JSON response for the Product and ProductCategory entities
         exposeIds(config);
     }
+
+    private static void disableHttpMethods(Class theClass,RepositoryRestConfiguration config, HttpMethod[] unsupportedActions) {
+        config.getExposureConfiguration()
+                .forDomainType(theClass)
+                .withItemExposure((metadata, httpMethods) -> httpMethods.disable(unsupportedActions))
+                .withCollectionExposure((metadata, httpMethods) -> httpMethods.disable(unsupportedActions));
+    }
+
     private void exposeIds(RepositoryRestConfiguration config) {
         // Expose entity IDs in the JSON response for the Product and ProductCategory entities
         Set<EntityType<?>> entities = entityManager.getMetamodel().getEntities();
