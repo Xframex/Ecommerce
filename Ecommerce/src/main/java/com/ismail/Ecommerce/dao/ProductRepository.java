@@ -13,6 +13,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findByCategoryId(@Param ("id") Long id, Pageable pageable);
 
+    //findByNameContaining is a method provided by Spring Data JPA that allows you to search for products based on a partial match of their name. The @Param annotation is used to specify the parameter name in the query.
+    Page<Product> findByNameContaining(@Param("name") String name, Pageable pageable);
+
 
 }
 
