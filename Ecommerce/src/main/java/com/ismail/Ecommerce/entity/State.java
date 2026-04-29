@@ -17,7 +17,7 @@ public class State {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "country")
+
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
