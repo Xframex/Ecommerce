@@ -44,4 +44,13 @@ public class Customer {
         }
     }
 
+    public void add(Order order) {
+        if (order != null) {
+            if (orders == null) {
+                orders = new HashSet<>();
+            }
+            orders.add(order);
+            order.setCustomer(this);
+        }
+    }
 }

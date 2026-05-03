@@ -6,10 +6,15 @@ import com.ismail.Ecommerce.entity.Customer;
 import com.ismail.Ecommerce.entity.Order;
 import com.ismail.Ecommerce.entity.OrderItem;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
+
 @Data
+@Getter
+@Setter
 public class Purchase {
 
     private Customer customer;
