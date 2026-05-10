@@ -3,6 +3,7 @@ package com.ismail.Ecommerce.config;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -16,6 +17,9 @@ import java.util.Set;
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
+    @Value("${allowed.origins}")
+    private String[] theAllowedOrigins;
+
     private final EntityManager entityManager;
 
 
@@ -27,9 +31,9 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     @Override
      // This method is used to configure the REST repository settings, such as exposing entity IDs and disabling certain HTTP methods.
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-         HttpMethod[] unsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
+         HttpMethod[] unsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE, HttpMethod.PATCH};
 
-        // Disable HTTP methods for Product: PUT, POST and DELETE
+        // Disable HTTP methods for Product: PUT, POST and DELETE and PATCH
 
 
         // Disable HTTP methods for ProductCategory: PUT, POST and DELETE
@@ -42,7 +46,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         exposeIds(config);
 
         // config the CORS mapping
-        cors.addMapping("/api/**").allowedOrigins("http://localhost:4200");
+        cors.addMapping(config.getBasePath()+"/**").allowedOrigins(theAllowedOrigins);
 
         }
 
