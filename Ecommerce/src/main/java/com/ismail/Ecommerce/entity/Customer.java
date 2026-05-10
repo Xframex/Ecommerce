@@ -24,7 +24,7 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     // association with order --> one customer can place many orders and cascade all operations to orders it means that when we save a customer, all the associated orders will also be saved, and when we delete a customer, all the associated orders will also be deleted.
