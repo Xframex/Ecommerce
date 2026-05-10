@@ -41,6 +41,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         disableHttpMethods(com.ismail.Ecommerce.entity.Product.class, config, unsupportedActions);
         disableHttpMethods(com.ismail.Ecommerce.entity.Country.class, config, unsupportedActions);
         disableHttpMethods(com.ismail.Ecommerce.entity.State.class, config, unsupportedActions);
+        disableHttpMethods(com.ismail.Ecommerce.entity.Order.class, config, unsupportedActions);
 
         // Expose entity IDs in the JSON response for the Product and ProductCategory entities
         exposeIds(config);
