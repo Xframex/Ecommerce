@@ -16,7 +16,7 @@ import java.util.Set;
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
 
     @Autowired
@@ -40,7 +40,11 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
         // Expose entity IDs in the JSON response for the Product and ProductCategory entities
         exposeIds(config);
-    }
+
+        // config the CORS mapping
+        cors.addMapping("/api/**").allowedOrigins("http://localhost:4200");
+
+        }
 
     private static void disableHttpMethods(Class theClass,RepositoryRestConfiguration config, HttpMethod[] unsupportedActions) {
         config.getExposureConfiguration()
