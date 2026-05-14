@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Security ###
+.env
+application-local.properties
+*.key
+*.p12
