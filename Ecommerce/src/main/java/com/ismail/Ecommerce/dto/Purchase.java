@@ -23,4 +23,6 @@ public class Purchase {
     private Address billingAddress;
 
     private Set<OrderItem> orderItems;
+
+    private String paymentIntentId;
 }
