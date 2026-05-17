@@ -20,19 +20,19 @@
 
 ```mermaid
 graph TB
-    subgraph CLIENT["🌐 Angular Frontend  (localhost:4200)"]
+    subgraph CLIENT["Angular Frontend (localhost:4200)"]
         A[Product Catalog]
         B[User Auth UI]
         C[Checkout Form]
         D[Order History]
     end
 
-    subgraph SERVER["🔧 Spring Boot Backend  (localhost:9898 — HTTPS)"]
+    subgraph SERVER["Spring Boot Backend (localhost:9898 - HTTPS)"]
         direction TB
         subgraph WEB["Web Layer"]
             RC[CheckoutController]
             RS[StripeController]
-            RDR["Spring Data REST<br/>(/api/products, /api/categories...)"]
+            RDR[Spring Data REST - Products, Categories]
         end
         subgraph SVC["Service Layer"]
             CSI[CheckoutService]
@@ -47,32 +47,32 @@ graph TB
             SR[StateRepository]
         end
         subgraph SEC["Security Layer"]
-            SC[SecurityConfiguration<br/>Okta OAuth2 Resource Server]
+            SC[SecurityConfiguration - Okta OAuth2]
             JWT[JWT Validation]
         end
     end
 
-    subgraph DB["💾 MySQL Database"]
-        DB_P[(products<br/>product_category)]
-        DB_O[(orders<br/>order_item)]
-        DB_C[(customer<br/>address)]
-        DB_L[(country<br/>state)]
+    subgraph DB["MySQL Database"]
+        DB_P[(products, product_category)]
+        DB_O[(orders, order_item)]
+        DB_C[(customer, address)]
+        DB_L[(country, state)]
     end
 
-    subgraph EXT["☁️ External Services"]
-        OKTA[Okta — OAuth2 / JWT Issuer]
-        STRIPE[Stripe — Payment Intents]
+    subgraph EXT["External Services"]
+        OKTA[Okta - OAuth2 JWT Issuer]
+        STRIPE[Stripe - Payment Intents]
     end
 
-    CLIENT -- "HTTPS + JWT" --> WEB
+    CLIENT -- HTTPS + JWT --> WEB
     WEB --> SVC
     SVC --> DAO
     DAO --> DB
     RC --> CSI
     RS --> SS
-    SS -- "API Key" --> STRIPE
-    SC -- "JWT Verification" --> OKTA
-    RDR -- "Exposed as /api/**" --> WEB
+    SS -- API Key --> STRIPE
+    SC -- JWT Verification --> OKTA
+    RDR -- Exposed as /api/** --> WEB
 
     style CLIENT fill:#f5f5f5,stroke:#333,stroke-width:2px
     style SERVER fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px
