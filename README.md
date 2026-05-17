@@ -189,22 +189,19 @@ erDiagram
 
 ---
 
-## Tech Stack — Radar View
+## Tech Stack
 
-```mermaid
-radarRL
-    title Tech Stack Proficiency
-    axis["Java 21 / Spring Boot 3.2", 6]
-    axis["Angular 17 / TypeScript", 5]
-    axis["REST API Design", 6]
-    axis["Stripe Payments", 5]
-    axis["OAuth2 / Okta", 5]
-    axis["JPA / Hibernate", 5]
-    axis["MySQL", 6]
-    axis["HTTPS / SSL", 4]
-    axis["Git / CI", 4]
-    series["Capability Level", [6, 5, 6, 5, 5, 5, 6, 4, 4]]
-```
+| Technology | Proficiency |
+|---|---|
+| Java 21 / Spring Boot 3.2 | ██████████ |
+| Angular 17 / TypeScript | ████████░░ |
+| REST API Design | ██████████ |
+| Stripe Payments | ████████░░ |
+| OAuth2 / Okta | ████████░░ |
+| JPA / Hibernate | ████████░░ |
+| MySQL | ██████████ |
+| HTTPS / SSL | ██████░░░░ |
+| Git / CI | ██████░░░░ |
 
 ---
 
